@@ -88,6 +88,8 @@ public class AsyncTankHttpClient5 implements TankHttpClient {
                 .build();
         
         httpclient = HttpAsyncClients.custom().setConnectionManager(cm).build();
+        httpclient.start();
+
         requestConfig = RequestConfig.custom()
         		.setConnectTimeout(30, TimeUnit.SECONDS)
         		.setCircularRedirectsAllowed(true)
@@ -273,7 +275,7 @@ public class AsyncTankHttpClient5 implements TankHttpClient {
             setHeaders(request, method, request.getHeaderInformation());
             long startTime = System.currentTimeMillis();
             request.setTimestamp(new Date(startTime));
-             final Future<SimpleHttpResponse> future = httpclient.execute(
+            final Future<SimpleHttpResponse> future = httpclient.execute(
                     method, context,
                     new FutureCallback<SimpleHttpResponse>() {
 
