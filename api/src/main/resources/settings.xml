@@ -141,6 +141,8 @@
 			</tank-client>
 			<tank-client name="Apache HttpClient 5">com.intuit.tank.httpclient5.TankHttpClient5
 			</tank-client>
+			<tank-client name="Apache HttpClient 5A">com.intuit.tank.httpclient5.AsyncTankHttpClient5
+			</tank-client>
 		</tank-http-clients>
 		<default-tank-client>Apache HttpClient 5</default-tank-client>
 

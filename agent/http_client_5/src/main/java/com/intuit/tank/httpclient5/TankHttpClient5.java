@@ -17,6 +17,7 @@ import java.io.ByteArrayInputStream;
 
 import java.io.ByteArrayOutputStream;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -305,6 +306,8 @@ public class TankHttpClient5 implements TankHttpClient {
             LOG.error(request.getLogUtil().getLogMessage("UnknownHostException to url: " + uri + " |  error: " + uhex.toString(), LogEventType.IO), uhex);
         } catch (SocketException sex) {
             LOG.error(request.getLogUtil().getLogMessage("SocketException to url: " + uri + " |  error: " + sex.toString(), LogEventType.IO), sex);
+        } catch (SocketTimeoutException stx) {
+            LOG.error(request.getLogUtil().getLogMessage("SocketTimeoutException to url: " + uri + " |  error: " + stx.toString(), LogEventType.IO), stx);
         } catch (Exception ex) {
             LOG.error(request.getLogUtil().getLogMessage("Could not do " + method.getMethod() + " to url " + uri + " |  error: " + ex.toString(), LogEventType.IO), ex);
             throw new RuntimeException(ex);
