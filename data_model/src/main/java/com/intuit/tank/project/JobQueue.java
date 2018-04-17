@@ -102,8 +102,8 @@ public class JobQueue extends BaseEntity {
     }
 
     /**
-     * @param jobs
-     *            the jobs to set
+     * @param job
+     *            the job to set
      */
     public void addJob(JobInstance job) {
         this.jobs.add(job);

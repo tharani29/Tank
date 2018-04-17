@@ -414,11 +414,8 @@ public abstract class BaseDao<T_ENTITY extends BaseEntity> {
     /**
      * returns list of entities meeting the specified criteria.
      * 
-     * @param criterion
-     *            varargs criterion. (use something like Restrictions.eq(propertyName, value);) null criterion returns
-     *            all.
-     * @param sortOrder
-     *            the Order Object. Null value indicates no sort order.
+     * @param qlString
+     * @param params
      * @return the non null list.
      * @throws HibernateException
      *             if there is an error in persistence
