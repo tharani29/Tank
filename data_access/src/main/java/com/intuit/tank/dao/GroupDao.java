@@ -28,9 +28,6 @@ import com.intuit.tank.project.Group;
  */
 public class GroupDao extends BaseDao<Group> {
 
-    /**
-     * @param entityClass
-     */
     public GroupDao() {
         super();
     }
@@ -45,10 +42,9 @@ public class GroupDao extends BaseDao<Group> {
     public Group findByName(@Nonnull String name) {
         String prefix = "x";
         NamedParameter parameter = new NamedParameter(Group.PROPERTY_NAME, "name", name);
-        StringBuilder sb = new StringBuilder();
-        sb.append(buildQlSelect(prefix)).append(startWhere())
-                .append(buildWhereClause(Operation.EQUALS, prefix, parameter));
-        return super.findOneWithJQL(sb.toString(), parameter);
+        String sb = buildQlSelect(prefix) + startWhere() +
+                buildWhereClause(Operation.EQUALS, prefix, parameter);
+        return super.findOneWithJQL(sb, parameter);
     }
 
     /**

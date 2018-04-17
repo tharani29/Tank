@@ -17,7 +17,7 @@
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
   <persistence-unit name="tank" transaction-type="RESOURCE_LOCAL">
-    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <non-jta-data-source>java:/comp/env/jdbc/watsDS</non-jta-data-source>
 
     <class>com.intuit.tank.project.DataFile</class>

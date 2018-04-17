@@ -81,9 +81,7 @@ public class JobQueueDao extends BaseDao<JobQueue> {
     public List<JobQueue> getForProjectIds(@Nonnull List<Integer> projectIds) {
         String prefix = "x";
         NamedParameter parameter = new NamedParameter(JobQueue.PROPERTY_PROJECT_ID, "pId", projectIds);
-        StringBuilder sb = new StringBuilder();
-        sb.append(buildQlSelect(prefix)).append(startWhere()).append(buildWhereClause(Operation.IN, prefix, parameter));
-        List<JobQueue> resultList = super.listWithJQL(sb.toString(), parameter);
+        List<JobQueue> resultList = super.listWithJQL(buildQlSelect(prefix) + startWhere() + buildWhereClause(Operation.IN, prefix, parameter), parameter);
         return resultList;
     }
     
