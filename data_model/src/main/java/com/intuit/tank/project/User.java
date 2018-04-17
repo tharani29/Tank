@@ -21,6 +21,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -31,7 +32,6 @@ import javax.validation.constraints.Size;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.hibernate.annotations.Index;
 import org.hibernate.envers.Audited;
 
 /**
@@ -42,7 +42,9 @@ import org.hibernate.envers.Audited;
  * 
  */
 @Entity
-@Table(name = "user")
+@Table(name = "user", indexes = { @Index(name="IDX_USER_NAME", columnList = "name"),
+                                  @Index(name="IDX_USER_EMAIL", columnList = "email"),
+                                  @Index(name="IDX_USER_TOKEN", columnList = "token")})
 @Audited
 public class User extends BaseEntity {
 
@@ -53,13 +55,11 @@ public class User extends BaseEntity {
     public static final String PROPERTY_TOKEN = "apiToken";
 
     @Column(name = "name", unique = true, nullable = false)
-    @Index(name = "IDX_USER_NAME")
     @NotNull
     @Size(max = 255)
     private String name;
 
     @Column(name = "email", nullable = false)
-    @Index(name = "IDX_USER_EMAIL")
     @NotNull
     @Size(max = 255)
     private String email;
@@ -68,7 +68,6 @@ public class User extends BaseEntity {
     private String password;
 
     @Column(name = "token")
-    @Index(name = "IDX_USER_TOKEN")
     private String apiToken;
 
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
