@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -189,11 +190,7 @@ public class JobInstance extends BaseJob {
      * @return the dataFileIds
      */
     public Set<Integer> getDataFileIds() {
-        Set<Integer> ret = new HashSet<Integer>();
-        for (EntityVersion ev : dataFileVersions) {
-        	ret.add(ev.getObjectId());
-        }
-        return ret;
+        return dataFileVersions.stream().map(EntityVersion::getObjectId).collect(Collectors.toSet());
     }
 
     /**
