@@ -47,9 +47,6 @@ import com.intuit.tank.vm.common.util.MethodTimer;
 public class ScriptDao extends BaseDao<Script> {
     private static final Logger LOG = LogManager.getLogger(ScriptDao.class);
 
-    /**
-     * @param entityClass
-     */
     public ScriptDao() {
         super();
         setReloadEntities(true);
@@ -71,8 +68,7 @@ public class ScriptDao extends BaseDao<Script> {
      * @inheritDoc
      */
     public Script getScript(Integer id) {
-        Script script = super.findById(id);
-        return script;
+        return super.findById(id);
     }
 
     /**

@@ -31,7 +31,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @Table(name = "timing_periodic", indexes = { @Index(name="IDX_TS_JOB_ID", columnList = "job_id"),
                                              @Index(name="IDX_TS_TIME", columnList = "timestamp"),
                                              @Index(name="IDX_TS_PAGE_ID", columnList = "page_id")})
-
 public class PeriodicData extends BaseEntity implements Comparable<PeriodicData> {
 
     private static final long serialVersionUID = 1L;

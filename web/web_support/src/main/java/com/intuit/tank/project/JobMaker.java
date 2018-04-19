@@ -419,21 +419,20 @@ public class JobMaker implements Serializable {
     }
 
     private boolean hasScripts() {
-        boolean ret = false;
         Workload workload = projectBean.getWorkload();
         workload.getTestPlans();
         for (TestPlan plan : workload.getTestPlans()) {
             for (ScriptGroup group : plan.getScriptGroups()) {
                 if (!group.getScriptGroupSteps().isEmpty()) {
-                    ret = true;
+                    return true;
                 }
             }
         }
-        return ret;
+        return false;
     }
 
     /**
-     * @param dataFileDao2
+     * @param dao
      * @param dataFileIds
      * @return
      */
@@ -449,8 +448,8 @@ public class JobMaker implements Serializable {
     }
 
     /**
-     * @param dataFileDao2
-     * @param dataFileIds
+     * @param dao
+     * @param entities
      * @return
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })

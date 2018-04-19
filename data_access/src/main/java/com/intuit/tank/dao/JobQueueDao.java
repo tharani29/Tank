@@ -58,7 +58,7 @@ public class JobQueueDao extends BaseDao<JobQueue> {
         JobQueue result = null;
         NamedParameter parameter = new NamedParameter(JobQueue.PROPERTY_PROJECT_ID, "pId", projectId);
         List<JobQueue> resultList = super.listWithJQL(buildQlSelect(prefix) + startWhere() + buildWhereClause(Operation.EQUALS, prefix, parameter), parameter);
-        if (resultList.size() > 0) {
+        if (!resultList.isEmpty()) {
             result = resultList.get(0);
         }
         if (resultList.size() > 1) {
@@ -81,8 +81,7 @@ public class JobQueueDao extends BaseDao<JobQueue> {
     public List<JobQueue> getForProjectIds(@Nonnull List<Integer> projectIds) {
         String prefix = "x";
         NamedParameter parameter = new NamedParameter(JobQueue.PROPERTY_PROJECT_ID, "pId", projectIds);
-        List<JobQueue> resultList = super.listWithJQL(buildQlSelect(prefix) + startWhere() + buildWhereClause(Operation.IN, prefix, parameter), parameter);
-        return resultList;
+        return super.listWithJQL(buildQlSelect(prefix) + startWhere() + buildWhereClause(Operation.IN, prefix, parameter), parameter);
     }
     
     /**

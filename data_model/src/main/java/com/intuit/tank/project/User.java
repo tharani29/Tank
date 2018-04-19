@@ -42,10 +42,10 @@ import org.hibernate.envers.Audited;
  * 
  */
 @Entity
+@Audited
 @Table(name = "user", indexes = { @Index(name="IDX_USER_NAME", columnList = "name"),
                                   @Index(name="IDX_USER_EMAIL", columnList = "email"),
                                   @Index(name="IDX_USER_TOKEN", columnList = "token")})
-@Audited
 public class User extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
